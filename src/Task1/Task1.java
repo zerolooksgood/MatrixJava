@@ -9,22 +9,18 @@ public class Task1 {
 
 
     public static void task1() {
-        int[][] matrix1 = {
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-        };
+        long start = System.nanoTime();
 
-        Tile[][] tileMatrix1 = convertToTileMatrix(matrix1);
+        calculateMatrix(convertToTileMatrix(generateMatrix(10,10,1,100)));
+        calculateMatrix(convertToTileMatrix(generateMatrix(10,10,1,100)));
+        calculateMatrix(convertToTileMatrix(generateMatrix(10,10,1,100)));
+        calculateMatrix(convertToTileMatrix(generateMatrix(10,10,1,100)));
+        calculateMatrix(convertToTileMatrix(generateMatrix(10,10,1,100)));
+        calculateMatrix(convertToTileMatrix(generateMatrix(10,10,1,100)));
 
-        printResults(calculateMatrix(tileMatrix1));
+        long end = System.nanoTime();
+        long elapsedTime = end-start;
+        System.out.println(elapsedTime / 1000000 + "ms");
     }
 
     public static Tile[][] convertToTileMatrix(int[][] matrix) {
@@ -52,8 +48,8 @@ public class Task1 {
         startTile.setLowestPath(path);
 
         for (int row = 1; row < tileMatrix.length; row++) {
-            Tile prevTile = tileMatrix[0][row - 1];
-            Tile currentTile = new Tile(tileMatrix[0][row].getValue(), tileMatrix[0][row].getPosition());
+            Tile prevTile = new Tile(tileMatrix[0][row - 1]);
+            Tile currentTile = new Tile(tileMatrix[0][row]);
 
             path = prevTile.getHighestPath();
             path.add(currentTile.getPosition());
@@ -65,8 +61,8 @@ public class Task1 {
         }
 
         for (int col = 1; col < tileMatrix[0].length; col++) {
-            Tile prevTile = tileMatrix[col - 1][0];
-            Tile currentTile = new Tile(tileMatrix[col][0].getValue(), tileMatrix[col][0].getPosition());
+            Tile prevTile = new Tile(tileMatrix[col - 1][0]);
+            Tile currentTile = new Tile(tileMatrix[col][0]);
 
             path = prevTile.getHighestPath();
             path.add(currentTile.getPosition());
@@ -100,8 +96,8 @@ public class Task1 {
                     lowestPath = tileAbove.getLowestPath();
                     lowestPathSum = tileAbove.getLowestPathSum();
                 } else {
-                    lowestPath = tileAbove.getLowestPath();
-                    lowestPathSum = tileAbove.getLowestPathSum();
+                    lowestPath = tileLeft.getLowestPath();
+                    lowestPathSum = tileLeft.getLowestPathSum();
                 }
                 lowestPath.add(currentTile.getPosition());
                 lowestPathSum += currentTile.getValue();
@@ -123,6 +119,18 @@ public class Task1 {
         System.out.println("Lowest path");
         System.out.println(lastTile.getLowestPathSum());
         System.out.println(printPath(lastTile.getLowestPath()));
+    }
+
+    public static int[][] generateMatrix(int height, int width, int min, int max) {
+        int[][] matrix = new int[height][width];
+
+        for (int[] row : matrix) {
+            for (int col : row) {
+                col = min + (int)(Math.random() * ((max - min) + 1));
+            }
+        }
+
+        return matrix;
     }
 
     public static String printPath(List<int[]> path) {

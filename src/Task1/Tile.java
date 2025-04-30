@@ -15,6 +15,20 @@ public class Tile {
     private List<int[]> lowestPath;
 
 
+    public Tile(Tile tile) {
+        this.value =  tile.getValue();
+        this.position = tile.getPosition();
+
+        try {
+            this.highestPathSum = tile.getHighestPathSum();
+            this.lowestPathSum = tile.getLowestPathSum();
+            this.highestPath = tile.getHighestPath();
+            this.lowestPath = tile.getLowestPath();
+        } catch (Exception e) {
+
+        }
+    }
+
     public Tile(int value, int[] position) {
         this.value = value;
         this.position = new int[]{position[0], position[1]};
