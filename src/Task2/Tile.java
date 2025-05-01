@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tile {
-    public int value;
-    public int[] position;
-    public int highestPathSum;
-    public int lowestPathSum;
-    public List<int[]> highestPath;
-    public List<int[]> lowestPath;
+    private int value;
+    private int[] position;
+
+    private int highestPathSum;
+    private int lowestPathSum;
+
+    private List<int[]> highestPath;
+    private List<int[]> lowestPath;
 
     public Tile(Tile tile) {
         this.value = tile.getValue();
@@ -20,7 +22,7 @@ public class Tile {
             this.lowestPathSum = tile.getLowestPathSum();
             this.highestPath = tile.getHighestPath();
             this.lowestPath = tile.getLowestPath();
-        } catch (Exception e) {
+        } catch (Exception _) {
 
         }
     }
