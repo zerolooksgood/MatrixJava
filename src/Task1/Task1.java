@@ -9,6 +9,8 @@ public class Task1 {
 
 
     public static void task1() {
+        System.out.println("\nTask 1:\n");
+
         int[][] matrix1 = {
                 {1, 8, 921, 238, 366, 938, 246, 940, 736, 585},
                 {36, 9, 161, 717, 224, 489, 141, 160, 496, 838},

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Task2 {
     public static void task2() {
+        System.out.println("\nTask 2:\n");
+
         List<int[]> list = new ArrayList<>();
         list.add(new int[] {0});
         list.add(new int[] {2, 4});
