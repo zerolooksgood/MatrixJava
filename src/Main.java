@@ -7,8 +7,6 @@ public class Main {
         long start = System.nanoTime();
 
         Task1.task1();
-        Task2.task2();
-        Task3.task3();
 
         long end = System.nanoTime();
         long timeElapsed = end - start;
